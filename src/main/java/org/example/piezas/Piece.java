@@ -18,6 +18,7 @@ public abstract class Piece {
         this.cell = cell;
         place();
     }
+
     protected void place() {
         if(cell!=null)
             cell.setPiece(this);
@@ -34,24 +35,32 @@ public abstract class Piece {
 
         return false;
     }
+
     public boolean canMoveTo(Coordinate coordinate){
         return getNextMovements().contains(coordinate);
     }
 
     public void remove(){
-        if(cell!=null)
+        cell.getBoard().getBoxPieces().removePiece(cell.getPiece());
+
+        if(cell!=null) {
             cell.setPiece(null);
+
+        }
         cell = null;
     }
 
     public boolean moveTo(Coordinate coordinate){
         if(cell == null) return false;
+
         if(!canMoveTo(coordinate)) return false;
 
         Cell destination = cell.getBoard().getCellAt(coordinate);
 
-        if(!destination.isEmpty())
+        if(!destination.isEmpty()) {
             destination.getPiece().remove();
+
+        }
 
         cell.setPiece(null);
         cell = destination;
@@ -61,9 +70,6 @@ public abstract class Piece {
         return true;
     }
 
-    public void setCell(Cell cell) {
-        this.cell = cell;
-    }
 
     public Type getType() {
         return type;
@@ -138,5 +144,7 @@ public abstract class Piece {
             return color;
         }
     }
+
+
 
 }

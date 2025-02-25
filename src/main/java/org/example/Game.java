@@ -1,8 +1,12 @@
 package org.example;
 
+import org.example.piezas.King;
 import org.example.piezas.Piece;
 
+import java.util.Collections;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.Collector;
 
 public class Game {
     private Board board;
@@ -14,7 +18,7 @@ public class Game {
         board = new Board();
         turno = false;
         board.placePieces();
-        giveName();
+      //  giveName();
     }
 
     public void giveName() {
@@ -64,8 +68,6 @@ public class Game {
 
         Piece piece_Select = board.getCellAt(positionPiece).getPiece();
 
-        //  pieceSelect=board.getCellAt(pieceSelect()).getPiece();
-
         board.highLight(piece_Select.getNextMovements());
 
         if(!turno) {
@@ -77,7 +79,7 @@ public class Game {
         board.removeHighLight();
 
         coordinateMovePiece = Entrada.giveMovement(board, piece_Select.getCell().getCoordinate(),turno);
-       // coordinateMovePiece = entrada.giveMovement(board, piece_Select.getCell().getCoordinate(),turno);
+
 
         piece_Select.moveTo(coordinateMovePiece);
 
@@ -85,24 +87,26 @@ public class Game {
 
     public void play() {
         Coordinate coordinatePiece;
-        while (checkKing()) {
+        do {
 
             coordinatePiece = pieceSelect();
 
             movePiece(coordinatePiece);
 
-        }
+        }while(checkKing(coordinatePiece));
     }
 
 
-    public boolean checkKing() {
+
+    public boolean checkKing(Coordinate c) {
+        // King kingWhite =new King(board,c,King.Type.WHITE);
+        // King kingBlack=new King(board,c,King.Type.BLACK);
+
+        if(board.getNextMovements(board.getCellAt(c).getPiece().getColor()).contains(kingWhite.getNextMovements())
+        ||board.getNextMovements(board.getCellAt(c).getPiece().getColor()).contains(kingBlack.getNextMovements())) {
+            return false;
+        }
         return true;
     }
-/*
-    @Override
-    public String toString() {
-        return board.toString();
-    }
 
- */
 }

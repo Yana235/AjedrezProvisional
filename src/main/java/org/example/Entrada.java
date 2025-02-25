@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+
 public class Entrada {
 
 
@@ -48,10 +49,10 @@ public class Entrada {
 
             if (!condicion1) {
                 if (!turno) {
-                    Screen.showBoard(board);
+                    Screen.showBoardRevert(board);
 
                 } else {
-                    Screen.showBoardRevert(board);
+                    Screen.showBoard(board);
 
                 }
 
@@ -145,8 +146,8 @@ public class Entrada {
 
 
                 if (!turno) {
-                    Screen.showBoardRevert(board);
 
+                    Screen.showBoardRevert(board);
                 } else {
                     Screen.showBoard(board);
 

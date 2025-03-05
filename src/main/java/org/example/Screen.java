@@ -7,9 +7,9 @@ import java.util.TreeMap;
 public class Screen {
 
 
-    public static void showBoard(Board board ){
+    public static void showBoard(Board board) {
 
-        Map<Coordinate, Cell> cells=new HashMap<>(board.getCells());
+        Map<Coordinate, Cell> cells = new HashMap<>(board.getCells());
 
 
         String aux = "    A  B  C  D  E  F  G  H\n";
@@ -23,15 +23,15 @@ public class Screen {
         }
         aux += "    A  B  C  D  E  F  G  H";
 
-        aux+=board.getBoxPieces().toString();
+        aux += board.getBoxPieces().toString();
 
 
         System.out.println(aux);
 
     }
 
-    public static void showBoardRevert(Board board){
-         Map<Coordinate, Cell> cells=new HashMap<>(board.getCells());
+    public static void showBoardRevert(Board board) {
+        Map<Coordinate, Cell> cells = new HashMap<>(board.getCells());
 
         String aux = "    H  G  F  E  D  C  B  A\n";
 
@@ -44,7 +44,7 @@ public class Screen {
         }
         aux += "    H  G  F  E  D  C  B  A";
 
-        aux+=board.getBoxPieces().toString();
+        aux += board.getBoxPieces().toString();
 
         System.out.println(aux);
     }
